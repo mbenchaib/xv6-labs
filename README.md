@@ -19,3 +19,7 @@ This repository contains notes and explanations of the xv6 labs I solved, organi
 4. **find (moderate)**
    - Implements a simple version of the UNIX `find` program that searches a directory tree for files with a specific name.
    - Learn about directory traversal, recursion, system calls (`open`, `read`, `fstat`).
+
+5. **exec (moderate)**
+   - Extends the `find` program to execute a command on each matched file instead of printing it.
+   - Learn about process creation with `fork`, program execution with `exec`, and synchronization with `wait`.
