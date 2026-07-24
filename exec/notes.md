@@ -48,3 +48,25 @@ fork()
 ├── child  → exec(cmd, args)   runs the command on the file
 └── parent → wait()            blocks until child finishes
                                then continues finding files
+
+## Implementation Strategy
+
+When `-exec cmd` flag is provided, instead of printing the file,
+for each matched file:
+
+    if cmd is provided:
+        fork()
+        
+        if child (pid == 0):
+            append matched file to cmd arguments
+            exec(cmd[0], cmd)       ← load and run the command
+        
+        if parent (pid > 0):
+            wait(&status)           ← block until child finishes
+
+## Helper Function
+
+append_file_arg(path, cmd)
+    appends the matched file path to the cmd arguments array
+    so exec receives:  cmd[0] cmd[1] ... file
+    checks it does not exceed MAXARG
